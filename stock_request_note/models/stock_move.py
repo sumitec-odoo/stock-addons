@@ -11,5 +11,10 @@ class StockMove(models.Model):
     @api.depends("allocation_ids")
     def _compute_note(self):
         for rec in self:
-            for rec2 in rec.allocation_ids:
-                rec.note = rec2.stock_request_id.note
+            # import pdb; pdb.set_trace()
+            if not rec.allocation_ids:
+                rec.note = ""
+            else:
+                for rec2 in rec.allocation_ids:
+                    # import pdb; pdb.set_trace()
+                    rec.note = rec2.stock_request_id.note
