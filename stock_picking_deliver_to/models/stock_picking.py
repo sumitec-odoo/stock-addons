@@ -6,4 +6,4 @@ from odoo import fields, models
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    deliver_to = fields.Many2one("res.users",string="Entregar a: ")
+    deliver_to = fields.Many2one("res.users",string="Entregar a")

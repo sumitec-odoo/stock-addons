@@ -1,0 +1,21 @@
+<odoo>
+    <template id="report_delivery_document2" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@name='div_sched_date']" position="after">
+            <div class="col-auto">
+                <strong>Entregar a:</strong>
+                <p t-field="o.deliver_to"/>
+            </div>
+            <!-- <div t-if="o.shipping_weight" class="col-auto">
+                <strong>Total Weight:</strong>
+                <br/>
+                <span t-field="o.shipping_weight"/>
+                <span t-field="o.weight_uom_name"/>
+            </div>
+            <div t-if="o.carrier_tracking_ref" class="col-auto">
+                <strong>Tracking Number:</strong>
+                <p t-field="o.carrier_tracking_ref"/>
+            </div>
+            <t t-set="has_hs_code" t-value="o.move_lines.filtered(lambda l: l.product_id.hs_code)"/> -->
+        </xpath>
+    </template>
+</odoo>
