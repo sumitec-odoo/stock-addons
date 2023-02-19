@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="picking_state_detail_reservado" model="stock.picking.state_detail">
+        <field name="name">Reservado</field>
+        <field name="sequence">11</field>
+        <field name="state">assigned</field>
+        <field name="picking_type">outgoing</field>
+    </record>
+
+    <record id="picking_state_detail_para_armar" model="stock.picking.state_detail">
+        <field name="name">Para armar</field>
+        <field name="sequence">12</field>
+        <field name="state">assigned</field>
+        <field name="picking_type">outgoing</field>
+    </record>
+
+    <record id="picking_state_detail_armado" model="stock.picking.state_detail">
+        <field name="name">Armado</field>
+        <field name="sequence">13</field>
+        <field name="state">assigned</field>
+        <field name="picking_type">outgoing</field>
+    </record>
+
+    <record id="group_stock_permitir_preparar_entregar" model="res.groups">
+        <field name="name">Permitir que el mismo usuario prepare y entregue el pedido (omitir control cruzado)</field>
+        <field name="category_id" ref="base.module_category_warehouse_management"/>
+    </record>
+
+</odoo>
