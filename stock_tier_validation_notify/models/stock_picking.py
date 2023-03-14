@@ -14,11 +14,12 @@ class StockPicking(models.Model):
         notification_ids = []
         notification_ids.append((0,0,{
                 'res_partner_id':self.user_requesting_review.partner_id.id}))        
+        subtype_id = self.env['ir.model.data']._xmlid_to_res_id('mail_mt_note')
         self.message_post(
             body='Se aprobo su pedido de revisión!', 
-            message_type='notification', 
-            subtype='mail.mt_comment',
-            notification_ids=notification_ids)
+            message_type='notification',
+            notification_ids=notification_ids,
+            subtype_id=subtype_id)
 
     def request_validation(self):
         self.user_requesting_review = self.env.user
