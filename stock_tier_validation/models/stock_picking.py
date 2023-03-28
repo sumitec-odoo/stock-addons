@@ -20,9 +20,9 @@ class StockPicking(models.Model):
             else:
                 rec.review_done_by_users = False
     
-    def action_done(self):
+    def _action_done(self):
         self.write({'state': 'done'})
-        res = super().action_done()
+        res = super()._action_done()
         return res
 
     def _notify_accepted_reviews(self):
