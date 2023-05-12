@@ -6,7 +6,8 @@ from odoo import models, fields, api, _
 from odoo.tools import float_compare
 
 class StockPicking(models.Model):
-    _inherit = 'stock.picking'
+    _name = "stock.picking"
+    _inherit = ['stock.picking', 'tier.validation']
 
     state_detail_user_id = fields.Many2one(
         'res.users', string='Usuario que modificó el subestado',tracking=True)
@@ -61,4 +62,11 @@ class StockPicking(models.Model):
         #         if self.picking_type_id.code == 'outgoing' and values["state"] == 'done' and self.state_detail_user_id.id == self.env.uid:
         #             raise ValidationError("El usuario que preparó el pedido no puede ser el mismo que válida su entrega")
         super(StockPicking,self).write(values)
-        
+
+    @api.model
+    def _get_under_validation_exceptions(self):
+        res = super(StockPicking,self)._get_under_validation_exceptions()
+        # estos campos no los va a tener en cuenta para la validación
+        res.append('state_detail_id')
+        res.append('state_detail_user_id')
+        return res
