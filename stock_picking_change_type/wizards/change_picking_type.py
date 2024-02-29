@@ -18,11 +18,14 @@ class ChangePickingtypeWizard(models.TransientModel):
 
     def do_update(self):        
 
-        if self.picking_id.state != 'draft':
-            raise UserError("Solo en borrador")
+        # if self.picking_id.state != 'draft':
+        #     raise UserError("Solo en borrador")
 
         if self.picking_id.picking_type_id.id == self.picking_type_id.id:
             raise UserError("Indique un tipo de operación distinto al actual")
+
+        self.picking_id.action_cancel()
+        self.picking_id.action_back_to_draft()
 
         self.picking_id.write(
             {
@@ -31,6 +34,9 @@ class ChangePickingtypeWizard(models.TransientModel):
             'location_id': self.picking_type_id.default_location_src_id.id,            
             }
         )
+
+        self.picking_id.action_confirm()
+        self.picking_id.action_assign()
 
         for move in self.picking_id.move_ids_without_package:
             move.write(

@@ -7,6 +7,9 @@ from odoo.exceptions import UserError, ValidationError
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
+    name = fields.Char(tracking=True)
+    picking_type_id = fields.Many2one(tracking=True)
+
     def change_picking_type(self):
         return {
             'type': 'ir.actions.act_window',
