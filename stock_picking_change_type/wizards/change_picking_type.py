@@ -24,6 +24,7 @@ class ChangePickingtypeWizard(models.TransientModel):
         if self.picking_id.picking_type_id.id == self.picking_type_id.id:
             raise UserError("Indique un tipo de operación distinto al actual")
 
+        self.picking_id.move_line_ids.filtered(lambda x: x.state not in ['draft', 'done', 'cancel']).write({'qty_done': False})
         self.picking_id.action_cancel()
         self.picking_id.action_back_to_draft()
 
