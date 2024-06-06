@@ -56,7 +56,7 @@ class StockMove(models.Model):
         vals = {
             "stock_move_id": self.id,
             "account_id": self.picking_id.analytic_account_id.id,
-            "group_id": self.picking_id.analytic_account_id.group_id.id,
+            # "group_id": self.picking_id.analytic_account_id.group_id.id,
             "partner_id": self.picking_id.partner_id.id,
             "product_id": self.product_id.id,
             "product_uom_id": self.product_uom.id,
